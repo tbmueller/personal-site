@@ -1,11 +1,8 @@
-import { Box, Heading, Text, Flex, Badge } from "@radix-ui/themes";
+import { Box, Text, Flex, Badge } from "@radix-ui/themes";
 
 export function Hero() {
   return (
-    <Box py="9">
-      <Heading size="8" weight="bold" mb="3">
-        Trista Mueller
-      </Heading>
+    <Box py="6">
       <Text size="4" color="gray" as="p" mb="5" style={{ maxWidth: "520px" }}>
         Software engineer. I build things that are fast, useful, and don&apos;t
         get in the way. Based somewhere with good coffee.

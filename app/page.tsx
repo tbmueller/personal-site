@@ -1,4 +1,5 @@
-import { Container, Tabs } from "@radix-ui/themes";
+import Image from "next/image";
+import { Container, Tabs, Heading, Flex, Box } from "@radix-ui/themes";
 import { Hero } from "@/components/Hero";
 import { Projects } from "@/components/Projects";
 import { Footer } from "@/components/Footer";
@@ -6,8 +7,29 @@ import { Footer } from "@/components/Footer";
 export default function Home() {
   return (
     <Container size="3" px="5">
+      <Flex align="center" justify="between" pt="8" pb="5">
+        <Heading size="8" weight="bold">
+          Trista Mueller
+        </Heading>
+        {/* Replace src with your photo path, e.g. /me.jpg placed in /public */}
+        <Box
+          style={{
+            width: 72,
+            height: 72,
+            borderRadius: "50%",
+            overflow: "hidden",
+            flexShrink: 0,
+            background: "var(--gray-4)",
+          }}
+        >
+          {/* Uncomment and update src once you add a photo to /public:
+          <Image src="/me.jpg" alt="Trista Mueller" width={72} height={72} style={{ objectFit: "cover" }} />
+          */}
+        </Box>
+      </Flex>
+
       <Tabs.Root defaultValue="about">
-        <Tabs.List mt="6" mb="6">
+        <Tabs.List mb="6">
           <Tabs.Trigger value="about">About</Tabs.Trigger>
           <Tabs.Trigger value="projects">Projects</Tabs.Trigger>
         </Tabs.List>
@@ -18,6 +40,7 @@ export default function Home() {
           <Projects />
         </Tabs.Content>
       </Tabs.Root>
+
       <Footer />
     </Container>
   );
