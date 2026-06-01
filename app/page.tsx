@@ -7,10 +7,7 @@ import { Footer } from "@/components/Footer";
 export default function Home() {
   return (
     <Container size="3" px="5">
-      <Flex align="center" justify="between" pt="8" pb="5">
-        <Heading size="8" weight="bold">
-          Trista Mueller
-        </Heading>
+      <Flex align="center" gap="4" pt="8" pb="5">
         {/* Replace src with your photo path, e.g. /me.jpg placed in /public */}
         <Box
           style={{
@@ -26,6 +23,9 @@ export default function Home() {
           <Image src="/me.jpg" alt="Trista Mueller" width={72} height={72} style={{ objectFit: "cover" }} />
           */}
         </Box>
+        <Heading size="8" weight="bold">
+          Trista Mueller
+        </Heading>
       </Flex>
 
       <Tabs.Root defaultValue="about">
