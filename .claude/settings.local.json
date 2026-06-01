@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/tristamueller/workspace/**)",
+      "Bash(npx create-next-app@latest personal-site --typescript --app --no-tailwind --eslint --no-src-dir --import-alias \"@/*\")",
+      "Bash(npm install *)",
+      "Bash(npm run *)"
+    ]
+  }
+}
