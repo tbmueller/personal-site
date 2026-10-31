@@ -2,6 +2,7 @@ import { Container, Tabs, Heading, Flex, Box } from "@radix-ui/themes";
 import { Hero } from "@/components/Hero";
 import { Projects } from "@/components/Projects";
 import { Footer } from "@/components/Footer";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { personJsonLd, jsonLdScript } from "@/lib/jsonLd";
 
 export default function Home() {
@@ -30,6 +31,9 @@ export default function Home() {
         <Heading size="8" weight="bold">
           Trista Mueller
         </Heading>
+        <Box ml="auto">
+          <ThemeToggle />
+        </Box>
       </Flex>
 
       <Tabs.Root defaultValue="about">

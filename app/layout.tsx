@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Theme } from "@radix-ui/themes";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { profile } from "@/data/profile";
 
@@ -14,14 +15,17 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    // next-themes sets the class on <html> before React hydrates.
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="describedby" type="text/markdown" href="/llms.txt" />
       </head>
       <body>
-        <Theme appearance="inherit" grayColor="slate" radius="medium" scaling="100%">
-          {children}
-        </Theme>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Theme appearance="inherit" grayColor="slate" radius="medium" scaling="100%">
+            {children}
+          </Theme>
+        </ThemeProvider>
       </body>
     </html>
   );
