@@ -9,7 +9,10 @@ npm install
 npm run dev     # http://localhost:3000
 npm run build   # production build
 npm run lint
+npm test        # unit tests (Vitest); npm run test:watch to keep them running
 ```
+
+CI (`.github/workflows/ci.yml`) runs lint, type-check, tests and build on every push to `main`.
 
 - **Projects** live in `data/projects.ts`. Each project has a name, a description, links and tags.
 - **About** text is in `components/Hero.tsx`.

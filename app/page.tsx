@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Container, Tabs, Heading, Flex, Box } from "@radix-ui/themes";
 import { Hero } from "@/components/Hero";
 import { Projects } from "@/components/Projects";
@@ -24,7 +23,7 @@ export default function Home() {
             background: "var(--gray-4)",
           }}
         >
-          {/* Uncomment and update src once you add a photo to /public:
+          {/* Once there's a photo in /public, add `import Image from "next/image"` and:
           <Image src="/me.jpg" alt="Trista Mueller" width={72} height={72} style={{ objectFit: "cover" }} />
           */}
         </Box>
