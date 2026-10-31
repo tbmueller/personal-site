@@ -27,6 +27,35 @@ CI (`.github/workflows/ci.yml`) runs lint, type-check, tests and build on every 
 - **Icons and link preview:** `app/icon.svg` is the favicon: a "T" drawn with two bars, teal, and violet in dark mode. `app/apple-icon.tsx` and `app/opengraph-image.tsx` generate the iOS home-screen icon and the 1200×630 link-preview image at build time, from `lib/brand.ts` and `data/profile.ts`.
 - **Photo:** the header has a placeholder circle. Put the image in `public/` and uncomment the `<Image>` in `app/page.tsx`.
 
+## How it works
+
+All the content lives in `data/`. The page, the files for AI agents and the link-preview image are built from it, so they can't drift apart. Travel photos live in Vercel Blob and only appear once `data/photos.ts` lists some.
+
+```mermaid
+flowchart LR
+  Data["data/<br/>profile.ts, projects.ts, photos.ts<br/>(the only place content lives)"]
+  Page["/<br/>About and Projects tabs"]
+  Agents["/llms.txt, /index.md,<br/>Person JSON-LD"]
+  OG["/opengraph-image<br/>link preview"]
+  Upload["npm run photos:upload<br/>strips GPS and camera data"]
+  Blob[("Vercel Blob<br/>travel photos")]
+  Robots["public/robots.txt<br/>AI preferences"]
+
+  Data -- "build time" --> Page
+  Data -- "build time" --> Agents
+  Data -- "build time" --> OG
+  Upload --> Blob
+  Blob -- "carousel images" --> Page
+  Robots ~~~ Agents
+
+  classDef std fill:#56B4E9,stroke:#0072B2,color:#1a1a1a
+  classDef agent fill:#009E73,stroke:#006B4E,color:#1a1a1a
+  classDef hi fill:#E69F00,stroke:#a37100,color:#1a1a1a
+  class Data,Page std
+  class Agents,Robots agent
+  class Upload,Blob,OG hi
+```
+
 ## For AI agents
 
 The site describes itself to AI agents as well as to people:
