@@ -1,5 +1,6 @@
 import { Box, Text, Flex, Badge, Heading } from "@radix-ui/themes";
 import { profile } from "@/data/profile";
+import { PhotoCarousel } from "@/components/PhotoCarousel";
 
 export function Hero() {
   return (
@@ -26,6 +27,7 @@ export function Hero() {
       <Text size="3" color="gray" as="p">
         {profile.outside}
       </Text>
+      <PhotoCarousel />
     </Box>
   );
 }

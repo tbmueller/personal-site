@@ -2,6 +2,7 @@
 // and /index.md (the whole page as clean Markdown).
 import { profile } from "@/data/profile";
 import { projects } from "@/data/projects";
+import { photos } from "@/data/photos";
 
 const linkList = (links: { label: string; href: string }[]) =>
   links.map((l) => `[${l.label}](${l.href})`).join(", ");
@@ -47,6 +48,9 @@ export function indexMd(): string {
     "",
     profile.outside,
     "",
+    ...(photos.length
+      ? ["Travel photos:", "", ...photos.map((p) => `- [${p.caption ?? p.alt}](${p.src})`), ""]
+      : []),
     "## Projects",
     "",
     ...projects.flatMap((p) => [

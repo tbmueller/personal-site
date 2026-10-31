@@ -1,0 +1,15 @@
+// jsdom doesn't implement these browser APIs; Embla (the carousel) uses them.
+class NoopObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+  takeRecords() { return []; }
+}
+const g = globalThis as Record<string, unknown>;
+g.ResizeObserver ??= NoopObserver;
+g.IntersectionObserver ??= NoopObserver;
+if (!window.matchMedia) {
+  window.matchMedia = (query: string) =>
+    ({ matches: false, media: query, onchange: null, addListener() {}, removeListener() {},
+      addEventListener() {}, removeEventListener() {}, dispatchEvent: () => false }) as MediaQueryList;
+}

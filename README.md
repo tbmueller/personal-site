@@ -16,6 +16,13 @@ CI (`.github/workflows/ci.yml`) runs lint, type-check, tests and build on every 
 
 - **Projects** live in `data/projects.ts`. Each project has a name, a description, links and tags.
 - **About** text is in `components/Hero.tsx`.
+- **Travel photos** live in Vercel Blob and are listed in `data/photos.ts`. The carousel on the About tab only appears once that list has photos. To add one:
+
+  ```bash
+  BLOB_READ_WRITE_TOKEN=... npm run photos:upload -- path/to/photo.jpg
+  ```
+
+  The script rotates the photo upright, fits it within 2400px and re-encodes it as JPEG. That strips GPS location, camera details and timestamps; it checks they're gone and refuses to upload if not. Then it uploads the photo and prints the entry to paste into `data/photos.ts`, where you fill in the alt text and caption.
 - **Photo:** the header has a placeholder circle. Put the image in `public/` and uncomment the `<Image>` in `app/page.tsx`.
 
 ## For AI agents
