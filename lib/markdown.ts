@@ -18,6 +18,7 @@ export function llmsTxt(): string {
     "## Pages",
     "",
     "- [Full page as Markdown](/index.md): About and Projects in one file",
+    "- [MCP server](/api/mcp): Streamable HTTP, read-only tools get_about, list_projects and get_project, plus this site as a resource",
     "",
     "## Projects",
     "",

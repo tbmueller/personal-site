@@ -36,6 +36,7 @@ flowchart LR
   Data["data/<br/>profile.ts, projects.ts, photos.ts<br/>(the only place content lives)"]
   Page["/<br/>About and Projects tabs"]
   Agents["/llms.txt, /index.md,<br/>Person JSON-LD"]
+  MCP["/api/mcp<br/>MCP server, read-only tools"]
   OG["/opengraph-image<br/>link preview"]
   Upload["npm run photos:upload<br/>strips GPS and camera data"]
   Blob[("Vercel Blob<br/>travel photos")]
@@ -44,6 +45,7 @@ flowchart LR
   Data -- "build time" --> Page
   Data -- "build time" --> Agents
   Data -- "build time" --> OG
+  Data -- "per request" --> MCP
   Upload --> Blob
   Blob -- "carousel images" --> Page
   Robots ~~~ Agents
@@ -52,7 +54,7 @@ flowchart LR
   classDef agent fill:#009E73,stroke:#006B4E,color:#1a1a1a
   classDef hi fill:#E69F00,stroke:#a37100,color:#1a1a1a
   class Data,Page std
-  class Agents,Robots agent
+  class Agents,Robots,MCP agent
   class Upload,Blob,OG hi
 ```
 
@@ -64,5 +66,11 @@ The site describes itself to AI agents as well as to people:
 - **`/index.md`**: the whole page as clean Markdown. The HTML page links to it with `rel="alternate" type="text/markdown"`, and points to `/llms.txt` with `rel="describedby"`.
 - **`/robots.txt`**: says search and live AI answers are welcome but model training isn't. It uses both Cloudflare's [Content Signals](https://contentsignals.org/) (`Content-Signal: search=yes, ai-input=yes, ai-train=no`) and the IETF AI Preferences draft (`Content-Usage: train-ai=n`).
 - **schema.org `Person` JSON-LD** on the page.
+- **`/api/mcp`**: the site as an [MCP](https://modelcontextprotocol.io) server, over Streamable HTTP. It has three read-only tools (`get_about`, `list_projects`, `get_project`) and the whole site as the resource `site://index.md`. It's stateless, and it serves the 2026-07-28 spec plus the 2025-era fallback, via Vercel's [mcp-handler](https://github.com/vercel/mcp-handler). To connect from Claude Code:
+
+  ```bash
+  claude mcp add --transport http trista https://<site>/api/mcp
+  ```
+
 
 About and Projects text lives once, in `data/profile.ts` and `data/projects.ts`. The page, the Markdown files and the JSON-LD are all built from those two files, so they can't drift apart. Links are relative until the site has a domain.
