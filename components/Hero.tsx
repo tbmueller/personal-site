@@ -1,4 +1,5 @@
 import { Box, Text, Flex, Badge, Heading } from "@radix-ui/themes";
+import { profile } from "@/data/profile";
 
 export function Hero() {
   return (
@@ -6,33 +7,24 @@ export function Hero() {
       <Heading as="h2" size="4" mb="2">
         At work
       </Heading>
-      <Text size="3" color="gray" as="p" mb="3">
-        I&apos;m a senior software engineer with over ten years of experience,
-        and these days I specialize in billing, payments and monetization. At
-        Handshake I own billing for the employer business. I led the move from
-        slot-based subscriptions to per-job pricing, and cut billing incidents
-        by 80% along the way.
-      </Text>
-      <Text size="3" color="gray" as="p" mb="4">
-        Before that I built a design system at Patch and led onboarding work
-        at Wealthsimple that brought in CAD$600M in deposits. I&apos;m at home
-        across the stack, from Rails and Postgres to TypeScript and React.
-      </Text>
+      {profile.work.map((paragraph, i) => (
+        <Text key={i} size="3" color="gray" as="p" mb={i === profile.work.length - 1 ? "4" : "3"}>
+          {paragraph}
+        </Text>
+      ))}
       <Flex gap="2" wrap="wrap" mb="7">
-        <Badge variant="soft">Billing &amp; payments</Badge>
-        <Badge variant="soft">Rails</Badge>
-        <Badge variant="soft">TypeScript</Badge>
-        <Badge variant="soft">React</Badge>
-        <Badge variant="soft">Design systems</Badge>
+        {profile.skills.map((skill) => (
+          <Badge key={skill} variant="soft">
+            {skill}
+          </Badge>
+        ))}
       </Flex>
 
       <Heading as="h2" size="4" mb="2">
         Outside work
       </Heading>
       <Text size="3" color="gray" as="p">
-        I live in San Francisco. Before that, I lived in Toronto. I enjoy
-        kayaking, fiber crafts, hiking, traveling, and low-stakes board games
-        like Taboo and Telestrations.
+        {profile.outside}
       </Text>
     </Box>
   );

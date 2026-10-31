@@ -3,10 +3,15 @@ import { Container, Tabs, Heading, Flex, Box } from "@radix-ui/themes";
 import { Hero } from "@/components/Hero";
 import { Projects } from "@/components/Projects";
 import { Footer } from "@/components/Footer";
+import { personJsonLd, jsonLdScript } from "@/lib/jsonLd";
 
 export default function Home() {
   return (
     <Container size="3" px="5">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(personJsonLd) }}
+      />
       <Flex align="center" gap="4" pt="8" pb="5">
         {/* Replace src with your photo path, e.g. /me.jpg placed in /public */}
         <Box

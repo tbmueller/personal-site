@@ -1,0 +1,11 @@
+# Search engines and AI assistants are welcome to read this site and quote
+# it in answers. Please don't use it to train models.
+#
+# Content-Signal: Cloudflare's Content Signals Policy (https://contentsignals.org/)
+# Content-Usage:  IETF AI Preferences, draft-ietf-aipref-attach (still a draft)
+# A plain-Markdown summary for agents lives at /llms.txt (https://llmstxt.org/).
+
+User-Agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Content-Usage: train-ai=n
+Allow: /
