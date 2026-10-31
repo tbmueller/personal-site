@@ -4,10 +4,7 @@ import { projects } from "@/data/projects";
 
 export function Projects() {
   return (
-    <Box pb="9">
-      <Heading size="5" mb="5" color="gray">
-        Projects
-      </Heading>
+    <Box pt="2" pb="9">
       <Grid columns={{ initial: "1", sm: "2", md: "3" }} gap="4">
         {projects.map((project) => (
           <Card key={project.name} variant="surface">
