@@ -7,7 +7,7 @@ const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Trista Mueller",
-  description: "Trista Mueller, senior full-stack software developer with a front-end focus.",
+  description: "Trista Mueller, senior software engineer specializing in billing, payments and monetization.",
 };
 
 export default function RootLayout({
