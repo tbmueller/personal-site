@@ -8,7 +8,7 @@ class NoopObserver {
 const g = globalThis as Record<string, unknown>;
 g.ResizeObserver ??= NoopObserver;
 g.IntersectionObserver ??= NoopObserver;
-if (!window.matchMedia) {
+if (typeof window !== "undefined" && !window.matchMedia) {
   window.matchMedia = (query: string) =>
     ({ matches: false, media: query, onchange: null, addListener() {}, removeListener() {},
       addEventListener() {}, removeEventListener() {}, dispatchEvent: () => false }) as MediaQueryList;

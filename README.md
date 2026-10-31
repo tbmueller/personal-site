@@ -23,6 +23,7 @@ CI (`.github/workflows/ci.yml`) runs lint, type-check, tests and build on every 
   ```
 
   The script rotates the photo upright, fits it within 2400px and re-encodes it as JPEG. That strips GPS location, camera details and timestamps; it checks they're gone and refuses to upload if not. Then it uploads the photo and prints the entry to paste into `data/photos.ts`, where you fill in the alt text and caption.
+- **Icons and link preview:** `app/icon.svg` is the favicon: a "T" drawn with two bars, teal, and violet in dark mode. `app/apple-icon.tsx` and `app/opengraph-image.tsx` generate the iOS home-screen icon and the 1200×630 link-preview image at build time, from `lib/brand.ts` and `data/profile.ts`.
 - **Photo:** the header has a placeholder circle. Put the image in `public/` and uncomment the `<Image>` in `app/page.tsx`.
 
 ## For AI agents
