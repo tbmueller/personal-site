@@ -4,13 +4,16 @@ export function Hero() {
   return (
     <Box py="6">
       <Text size="4" color="gray" as="p" mb="5" style={{ maxWidth: "520px" }}>
-        Software engineer. I build things that are fast, useful, and don&apos;t
-        get in the way. Based somewhere with good coffee.
+        Senior full-stack software developer with a front-end focus. Over ten
+        years building product across fintech, B2B SaaS and climate tech:
+        design systems, onboarding flows, and making slow pages fast. Most at
+        home in TypeScript and React, with plenty of Rails on the back end.
       </Text>
       <Flex gap="2" wrap="wrap">
-        <Badge variant="soft">Engineering</Badge>
         <Badge variant="soft">TypeScript</Badge>
-        <Badge variant="soft">Systems</Badge>
+        <Badge variant="soft">React</Badge>
+        <Badge variant="soft">Rails</Badge>
+        <Badge variant="soft">Design systems</Badge>
       </Flex>
     </Box>
   );

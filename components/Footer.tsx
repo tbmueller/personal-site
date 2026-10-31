@@ -9,7 +9,7 @@ export function Footer() {
           © {new Date().getFullYear()} Trista Mueller
         </Text>
         <Flex gap="2">
-          <Link href="https://github.com/tristamueller" target="_blank" rel="noopener noreferrer">
+          <Link href="https://github.com/tbmueller" target="_blank" rel="noopener noreferrer">
             <IconButton variant="ghost" color="gray" size="1" aria-label="GitHub">
               <GitHubLogoIcon />
             </IconButton>

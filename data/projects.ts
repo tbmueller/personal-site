@@ -1,26 +1,38 @@
+export interface ProjectLink {
+  label: string;
+  href: string;
+}
+
 export interface Project {
   name: string;
   description: string;
-  url?: string;
+  links: ProjectLink[];
   tags: string[];
 }
 
 export const projects: Project[] = [
   {
-    name: "Project Alpha",
-    description: "A short description of what this project does and why it matters.",
-    url: "https://github.com",
-    tags: ["TypeScript", "React"],
+    name: "Welcome Mat",
+    description:
+      "For when friends and family fly in to visit: it follows their flights and tells you when to leave for the airport.",
+    links: [
+      { label: "Live site", href: "https://www.welcome-mat.app" },
+      { label: "Code", href: "https://github.com/tbmueller/welcome-mat" },
+    ],
+    tags: ["Next.js", "TypeScript", "Firebase", "Upstash"],
   },
   {
-    name: "Project Beta",
-    description: "Another thing you built — keep it punchy, one or two sentences.",
-    tags: ["Python", "API"],
+    name: "splitwise-mcp",
+    description:
+      "An MCP server that lets Claude and other AI assistants read and manage Splitwise expenses, groups and friends. It runs locally, so nothing leaves your machine except calls to Splitwise.",
+    links: [{ label: "Code", href: "https://github.com/tbmueller/splitwise-mcp" }],
+    tags: ["TypeScript", "MCP", "Node.js"],
   },
   {
-    name: "Project Gamma",
-    description: "Something interesting you shipped or contributed to.",
-    url: "https://github.com",
-    tags: ["Go", "CLI"],
+    name: "Drill Room",
+    description:
+      "A local judge for timed coding practice: problem on the left, editor on the right, Run against samples and Submit against hidden tests, in TypeScript, Python or Ruby. Problems come from packs you write.",
+    links: [{ label: "Code", href: "https://github.com/tbmueller/drill-room" }],
+    tags: ["JavaScript", "Node.js", "Python", "Ruby"],
   },
 ];

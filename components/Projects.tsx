@@ -1,5 +1,5 @@
 import { Box, Heading, Text, Flex, Badge, Card, Link, Grid } from "@radix-ui/themes";
-import { ExternalLinkIcon } from "@radix-ui/react-icons";
+import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 import { projects } from "@/data/projects";
 
 export function Projects() {
@@ -12,17 +12,22 @@ export function Projects() {
         {projects.map((project) => (
           <Card key={project.name} variant="surface">
             <Flex direction="column" gap="2" height="100%">
-              <Flex align="center" justify="between" gap="2">
-                <Heading size="3">{project.name}</Heading>
-                {project.url && (
-                  <Link href={project.url} target="_blank" rel="noopener noreferrer" color="gray">
-                    <ExternalLinkIcon />
-                  </Link>
-                )}
-              </Flex>
+              <Heading size="3">{project.name}</Heading>
               <Text size="2" color="gray" style={{ flex: 1 }}>
                 {project.description}
               </Text>
+              <Flex gap="3" wrap="wrap">
+                {project.links.map((link) => (
+                  <Link key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" size="2">
+                    <Flex align="center" gap="1" asChild>
+                      <span>
+                        {link.label}
+                        <ArrowTopRightIcon />
+                      </span>
+                    </Flex>
+                  </Link>
+                ))}
+              </Flex>
               <Flex gap="1" wrap="wrap" mt="1">
                 {project.tags.map((tag) => (
                   <Badge key={tag} size="1" variant="soft" color="gray">
