@@ -35,4 +35,11 @@ export const projects: Project[] = [
     links: [{ label: "Code", href: "https://github.com/tbmueller/drill-room" }],
     tags: ["JavaScript", "Node.js", "Python", "Ruby"],
   },
+  {
+    name: "This site",
+    description:
+      "You're looking at it. Yes, the personal site is listed under its own Projects tab. It needed a fourth card.",
+    links: [{ label: "Code", href: "https://github.com/tbmueller/personal-site" }],
+    tags: ["Next.js", "TypeScript", "Radix Themes"],
+  },
 ];
