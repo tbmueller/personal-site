@@ -17,3 +17,11 @@ describe("agent routes", () => {
     expect(await res.text()).toBe(indexMd());
   });
 });
+
+describe("site metadata", () => {
+  it("uses tristamueller.com for absolute URLs and the canonical link", async () => {
+    const { metadata } = await import("@/app/layout");
+    expect(String(metadata.metadataBase)).toBe("https://tristamueller.com/");
+    expect(metadata.alternates?.canonical).toBe("/");
+  });
+});

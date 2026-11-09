@@ -7,6 +7,7 @@ describe("Person JSON-LD", () => {
     expect(personJsonLd["@context"]).toBe("https://schema.org");
     expect(personJsonLd["@type"]).toBe("Person");
     expect(personJsonLd.name).toBe(profile.name);
+    expect(personJsonLd.url).toBe("https://tristamueller.com");
     expect(personJsonLd.worksFor).toEqual({ "@type": "Organization", name: profile.employer });
     expect(personJsonLd.sameAs).toEqual([profile.links.github, profile.links.linkedin]);
   });

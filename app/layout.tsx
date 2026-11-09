@@ -3,12 +3,15 @@ import { Theme } from "@radix-ui/themes";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { profile } from "@/data/profile";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
+  // Makes link-preview and other metadata URLs absolute, on the real domain.
+  metadataBase: new URL(SITE_URL),
   title: profile.name,
   description: `${profile.name}, ${profile.headline.charAt(0).toLowerCase()}${profile.headline.slice(1)}`,
   // The same page as Markdown, for AI agents (see /llms.txt).
-  alternates: { types: { "text/markdown": "/index.md" } },
+  alternates: { canonical: "/", types: { "text/markdown": "/index.md" } },
 };
 
 export default function RootLayout({

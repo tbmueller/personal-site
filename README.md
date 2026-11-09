@@ -1,6 +1,6 @@
 # personal-site
 
-Trista Mueller's personal site: an About tab and a Projects tab.
+Trista Mueller's personal site, live at [tristamueller.com](https://tristamueller.com): an About tab and a Projects tab.
 
 Built with Next.js 16 and Radix Themes.
 
@@ -69,8 +69,8 @@ The site describes itself to AI agents as well as to people:
 - **`/api/mcp`**: the site as an [MCP](https://modelcontextprotocol.io) server, over Streamable HTTP. It has three read-only tools (`get_about`, `list_projects`, `get_project`) and the whole site as the resource `site://index.md`. It's stateless, and it serves the 2026-07-28 spec plus the 2025-era fallback, via Vercel's [mcp-handler](https://github.com/vercel/mcp-handler). To connect from Claude Code:
 
   ```bash
-  claude mcp add --transport http trista https://<site>/api/mcp
+  claude mcp add --transport http trista https://tristamueller.com/api/mcp
   ```
 
 
-About and Projects text lives once, in `data/profile.ts` and `data/projects.ts`. The page, the Markdown files and the JSON-LD are all built from those two files, so they can't drift apart. Links are relative until the site has a domain.
+About and Projects text lives once, in `data/profile.ts` and `data/projects.ts`. The page, the Markdown files and the JSON-LD are all built from those two files, so they can't drift apart. Links in `/llms.txt` are relative to the site; metadata, the canonical URL and the JSON-LD use `lib/site.ts`.
