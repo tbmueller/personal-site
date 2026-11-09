@@ -12,6 +12,14 @@ export const metadata: Metadata = {
   description: `${profile.name}, ${profile.headline.charAt(0).toLowerCase()}${profile.headline.slice(1)}`,
   // The same page as Markdown, for AI agents (see /llms.txt).
   alternates: { canonical: "/", types: { "text/markdown": "/index.md" } },
+  // og:url, og:type and og:site_name for link previews; the image comes from app/opengraph-image.tsx.
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: profile.name,
+    title: profile.name,
+    description: `${profile.name}, ${profile.headline.charAt(0).toLowerCase()}${profile.headline.slice(1)}`,
+  },
 };
 
 export default function RootLayout({

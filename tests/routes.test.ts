@@ -23,5 +23,6 @@ describe("site metadata", () => {
     const { metadata } = await import("@/app/layout");
     expect(String(metadata.metadataBase)).toBe("https://tristamueller.com/");
     expect(metadata.alternates?.canonical).toBe("/");
+    expect(metadata.openGraph).toMatchObject({ type: "website", url: "/", siteName: "Trista Mueller", title: "Trista Mueller" });
   });
 });
