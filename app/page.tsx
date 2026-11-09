@@ -14,39 +14,43 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(personJsonLd) }}
       />
-      <Flex align="center" gap="4" pt="8" pb="5">
-        <Box
-          style={{
-            width: 72,
-            height: 72,
-            borderRadius: "50%",
-            overflow: "hidden",
-            flexShrink: 0,
-            background: "var(--gray-4)",
-          }}
-        >
-          <Image src={PHOTO} alt={profile.name} width={72} height={72} priority style={{ objectFit: "cover" }} />
-        </Box>
-        <Heading size="8" weight="bold">
-          {profile.name}
-        </Heading>
-        <Box ml="auto">
-          <ThemeToggle />
-        </Box>
+      <Flex asChild align="center" gap="4" pt="8" pb="5">
+        <header>
+          <Box
+            style={{
+              width: 72,
+              height: 72,
+              borderRadius: "50%",
+              overflow: "hidden",
+              flexShrink: 0,
+              background: "var(--gray-4)",
+            }}
+          >
+            <Image src={PHOTO} alt={`Headshot of ${profile.name}`} width={72} height={72} priority style={{ objectFit: "cover" }} />
+          </Box>
+          <Heading size="8" weight="bold">
+            {profile.name}
+          </Heading>
+          <Box ml="auto">
+            <ThemeToggle />
+          </Box>
+        </header>
       </Flex>
 
-      <Tabs.Root defaultValue="about">
-        <Tabs.List mb="6">
-          <Tabs.Trigger value="about">About</Tabs.Trigger>
-          <Tabs.Trigger value="projects">Projects</Tabs.Trigger>
-        </Tabs.List>
-        <Tabs.Content value="about">
-          <Hero />
-        </Tabs.Content>
-        <Tabs.Content value="projects">
-          <Projects />
-        </Tabs.Content>
-      </Tabs.Root>
+      <main>
+        <Tabs.Root defaultValue="about">
+          <Tabs.List mb="6">
+            <Tabs.Trigger value="about">About</Tabs.Trigger>
+            <Tabs.Trigger value="projects">Projects</Tabs.Trigger>
+          </Tabs.List>
+          <Tabs.Content value="about">
+            <Hero />
+          </Tabs.Content>
+          <Tabs.Content value="projects">
+            <Projects />
+          </Tabs.Content>
+        </Tabs.Root>
+      </main>
 
       <Footer />
     </Container>

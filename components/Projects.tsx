@@ -1,4 +1,4 @@
-import { Box, Heading, Text, Flex, Badge, Card, Link, Grid } from "@radix-ui/themes";
+import { Box, Heading, Text, Flex, Badge, Card, Link, Grid, VisuallyHidden } from "@radix-ui/themes";
 import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 import { projects } from "@/data/projects";
 
@@ -9,7 +9,7 @@ export function Projects() {
         {projects.map((project) => (
           <Card key={project.name} variant="surface">
             <Flex direction="column" gap="2" height="100%">
-              <Heading size="3">{project.name}</Heading>
+              <Heading as="h2" size="3">{project.name}</Heading>
               <Text size="2" color="gray" style={{ flex: 1 }}>
                 {project.description}
               </Text>
@@ -19,7 +19,8 @@ export function Projects() {
                     <Flex align="center" gap="1" asChild>
                       <span>
                         {link.label}
-                        <ArrowTopRightIcon />
+                        <VisuallyHidden>{" (opens in a new tab)"}</VisuallyHidden>
+                        <ArrowTopRightIcon aria-hidden />
                       </span>
                     </Flex>
                   </Link>

@@ -15,7 +15,8 @@ export function Hero() {
       ))}
       <Flex gap="2" wrap="wrap" mb="7">
         {profile.skills.map((skill) => (
-          <Badge key={skill} variant="soft">
+          // highContrast: the default soft teal text is 4.1:1 on its background; this clears WCAG's 4.5:1.
+          <Badge key={skill} variant="soft" highContrast>
             {skill}
           </Badge>
         ))}

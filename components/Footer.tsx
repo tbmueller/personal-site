@@ -1,27 +1,30 @@
-import { Box, Flex, Text, IconButton, Link } from "@radix-ui/themes";
+import { Box, Flex, Text, IconButton } from "@radix-ui/themes";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { profile } from "@/data/profile";
 
 export function Footer() {
   return (
-    <Box py="5" style={{ borderTop: "1px solid var(--gray-a4)" }}>
-      <Flex align="center" justify="between">
-        <Text size="1" color="gray">
-          © {new Date().getFullYear()} {profile.name}
-        </Text>
-        <Flex gap="2">
-          <Link href={profile.links.github} target="_blank" rel="noopener noreferrer">
-            <IconButton variant="ghost" color="gray" size="1" aria-label="GitHub">
-              <GitHubLogoIcon />
+    <Box asChild py="5" style={{ borderTop: "1px solid var(--gray-a4)" }}>
+      <footer>
+        <Flex align="center" justify="between">
+          <Text size="1" color="gray">
+            © {new Date().getFullYear()} {profile.name}
+          </Text>
+          <Flex gap="2">
+            {/* The icon button IS the link (asChild), so it's one tab stop, not a button inside a link. */}
+            <IconButton asChild variant="ghost" color="gray" size="1">
+              <a href={profile.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">
+                <GitHubLogoIcon aria-hidden />
+              </a>
             </IconButton>
-          </Link>
-          <Link href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">
-            <IconButton variant="ghost" color="gray" size="1" aria-label="LinkedIn">
-              <LinkedInLogoIcon />
+            <IconButton asChild variant="ghost" color="gray" size="1">
+              <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)">
+                <LinkedInLogoIcon aria-hidden />
+              </a>
             </IconButton>
-          </Link>
+          </Flex>
         </Flex>
-      </Flex>
+      </footer>
     </Box>
   );
 }

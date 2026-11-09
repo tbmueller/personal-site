@@ -31,8 +31,9 @@ describe("Projects tab", () => {
       const heading = screen.getByRole("heading", { name: p.name });
       const card = heading.closest(".rt-Card") as HTMLElement;
       expect(within(card).getByText(p.description)).toBeTruthy();
+      expect(heading.tagName).toBe("H2");
       for (const l of p.links) {
-        const link = within(card).getByRole("link", { name: l.label });
+        const link = within(card).getByRole("link", { name: new RegExp(`^${l.label}\\s*\\(opens in a new tab\\)$`) });
         expect(link.getAttribute("href")).toBe(l.href);
         expect(link.getAttribute("target")).toBe("_blank");
         expect(link.getAttribute("rel")).toBe("noopener noreferrer");
@@ -47,18 +48,30 @@ describe("Projects tab", () => {
 });
 
 describe("Footer", () => {
-  it("links to GitHub and LinkedIn", () => {
+  it("links to GitHub and LinkedIn, one focusable link each", () => {
     renderThemed(<Footer />);
-    const hrefs = screen.getAllByRole("link").map((a) => a.getAttribute("href"));
-    expect(hrefs).toEqual([profile.links.github, profile.links.linkedin]);
+    const links = screen.getAllByRole("link");
+    expect(links.map((a) => a.getAttribute("href"))).toEqual([profile.links.github, profile.links.linkedin]);
+    expect(links.map((a) => a.getAttribute("aria-label"))).toEqual(["GitHub (opens in a new tab)", "LinkedIn (opens in a new tab)"]);
+    expect(screen.queryAllByRole("button")).toHaveLength(0); // no button nested inside a link
+    expect(document.querySelector("footer")).toBeTruthy();
   });
 });
 
 describe("Home page", () => {
+  it("has header, main and footer landmarks, with one h1", () => {
+    const { container } = renderThemed(<Home />);
+    expect(container.querySelectorAll("header")).toHaveLength(1);
+    expect(container.querySelectorAll("main")).toHaveLength(1);
+    expect(container.querySelectorAll("footer")).toHaveLength(1);
+    expect(container.querySelectorAll("h1")).toHaveLength(1);
+    expect(container.querySelector("main [role=tablist]")).toBeTruthy();
+  });
+
   it("has the name, both tabs, and the Person JSON-LD", () => {
     const { container } = renderThemed(<Home />);
     expect(screen.getByRole("heading", { name: profile.name, level: 1 })).toBeTruthy();
-    expect(screen.getByAltText(profile.name).getAttribute("src")).toContain("me.jpg");
+    expect(screen.getByAltText(`Headshot of ${profile.name}`).getAttribute("src")).toContain("me.jpg");
     // Radix renders each tab label twice (one copy reserves the bold width), so match the start.
     expect(screen.getByRole("tab", { name: /^About/ }).getAttribute("aria-selected")).toBe("true");
     expect(screen.getByRole("tab", { name: /^Projects/ })).toBeTruthy();
