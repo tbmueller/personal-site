@@ -58,6 +58,7 @@ describe("Home page", () => {
   it("has the name, both tabs, and the Person JSON-LD", () => {
     const { container } = renderThemed(<Home />);
     expect(screen.getByRole("heading", { name: profile.name, level: 1 })).toBeTruthy();
+    expect(screen.getByAltText(profile.name).getAttribute("src")).toContain("me.jpg");
     // Radix renders each tab label twice (one copy reserves the bold width), so match the start.
     expect(screen.getByRole("tab", { name: /^About/ }).getAttribute("aria-selected")).toBe("true");
     expect(screen.getByRole("tab", { name: /^Projects/ })).toBeTruthy();

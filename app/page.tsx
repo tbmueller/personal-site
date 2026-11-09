@@ -1,9 +1,11 @@
+import Image from "next/image";
 import { Container, Tabs, Heading, Flex, Box } from "@radix-ui/themes";
 import { Hero } from "@/components/Hero";
 import { Projects } from "@/components/Projects";
 import { Footer } from "@/components/Footer";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { personJsonLd, jsonLdScript } from "@/lib/jsonLd";
+import { profile, PHOTO } from "@/data/profile";
 
 export default function Home() {
   return (
@@ -13,7 +15,6 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: jsonLdScript(personJsonLd) }}
       />
       <Flex align="center" gap="4" pt="8" pb="5">
-        {/* Replace src with your photo path, e.g. /me.jpg placed in /public */}
         <Box
           style={{
             width: 72,
@@ -24,12 +25,10 @@ export default function Home() {
             background: "var(--gray-4)",
           }}
         >
-          {/* Once there's a photo in /public, add `import Image from "next/image"` and:
-          <Image src="/me.jpg" alt="Trista Mueller" width={72} height={72} style={{ objectFit: "cover" }} />
-          */}
+          <Image src={PHOTO} alt={profile.name} width={72} height={72} priority style={{ objectFit: "cover" }} />
         </Box>
         <Heading size="8" weight="bold">
-          Trista Mueller
+          {profile.name}
         </Heading>
         <Box ml="auto">
           <ThemeToggle />

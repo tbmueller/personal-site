@@ -1,5 +1,8 @@
 // Who's on the page. The About tab, /llms.txt, /index.md and the JSON-LD
 // all read from here, so they can't drift apart.
+// Headshot, in public/. Metadata was stripped when it was added.
+export const PHOTO = "/me.jpg";
+
 export const profile = {
   name: "Trista Mueller",
   headline: "Senior software engineer specializing in billing, payments and monetization.",

@@ -1,5 +1,5 @@
 // schema.org Person: tells search engines and AI agents who this page is about.
-import { profile } from "@/data/profile";
+import { profile, PHOTO } from "@/data/profile";
 import { SITE_URL } from "@/lib/site";
 
 export const personJsonLd = {
@@ -7,6 +7,7 @@ export const personJsonLd = {
   "@type": "Person",
   name: profile.name,
   url: SITE_URL,
+  image: `${SITE_URL}${PHOTO}`,
   jobTitle: profile.jobTitle,
   worksFor: { "@type": "Organization", name: profile.employer },
   address: { "@type": "PostalAddress", addressLocality: profile.location },
